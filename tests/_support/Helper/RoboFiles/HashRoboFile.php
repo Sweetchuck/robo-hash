@@ -1,24 +1,26 @@
-# Robo Hash
-
-[![CircleCI](https://circleci.com/gh/Sweetchuck/robo-hash.svg?style=svg)](https://circleci.com/gh/Sweetchuck/robo-hash)
-[![codecov](https://codecov.io/gh/Sweetchuck/robo-hash/branch/1.x/graph/badge.svg?token=HSF16OGPyr)](https://codecov.io/gh/Sweetchuck/robo-hash)
-
-Wrapper for [Hash](https://www.php.net/manual/en/function.hash.php)
-
-```php
 <?php
 
 declare(strict_types = 1);
+
+namespace Sweetchuck\Robo\Hash\Test\Helper\RoboFiles;
 
 use Robo\Collection\CollectionBuilder;
 use Robo\State\Data as RoboStateData;
 use Robo\Tasks;
 use Sweetchuck\Robo\Hash\HashTaskLoader;
 
-class RoboFile extends Tasks
+class HashRoboFile extends Tasks
 {
 
     use HashTaskLoader;
+
+    /**
+     * {@inheritdoc}
+     */
+    protected function output()
+    {
+        return $this->getContainer()->get('output');
+    }
 
     /**
      * @command hash:file-name
@@ -90,5 +92,3 @@ class RoboFile extends Tasks
         ];
     }
 }
-
-```
