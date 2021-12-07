@@ -31,7 +31,8 @@
     "repositories": {},
     "require": {
         "php": ">=7.4",
-        "ext-hash": "*"
+        "ext-hash": "*",
+        "consolidation/robo": "^2.0"
     },
     "require-dev": {
         "ext-json": "*",
