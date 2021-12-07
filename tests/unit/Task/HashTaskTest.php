@@ -5,14 +5,16 @@ declare(strict_types = 1);
 namespace Sweetchuck\Robo\Hash\Tests\Unit\Task;
 
 use Codeception\Test\Unit;
+use Consolidation\Config\ConfigInterface;
 use League\Container\Container as LeagueContainer;
-use League\Container\ContainerInterface;
+use Psr\Container\ContainerInterface;
 use Robo\Collection\CollectionBuilder;
 use Robo\Config\Config;
 use Robo\Robo;
 use Sweetchuck\Codeception\Module\RoboTaskRunner\DummyOutput;
 use Sweetchuck\Codeception\Module\RoboTaskRunner\DummyProcessHelper;
-use Sweetchuck\Robo\Hash\Test\Helper\Dummy\DummyTaskBuilder;
+use Sweetchuck\Robo\Hash\Tests\Helper\Dummy\DummyTaskBuilder;
+use Sweetchuck\Robo\Hash\Tests\UnitTester;
 use Symfony\Component\Console\Application as SymfonyApplication;
 use Symfony\Component\Console\Output\OutputInterface;
 use Symfony\Component\ErrorHandler\BufferingLogger;
@@ -24,30 +26,15 @@ use Symfony\Component\ErrorHandler\BufferingLogger;
 class HashTaskTest extends Unit
 {
 
-    /**
-     * @var \Sweetchuck\Robo\Hash\Test\UnitTester
-     */
-    protected $tester;
+    protected UnitTester $tester;
 
-    /**
-     * @var \League\Container\ContainerInterface
-     */
-    protected $container;
+    protected ContainerInterface $container;
 
-    /**
-     * @var \Robo\Config
-     */
-    protected $config;
+    protected ConfigInterface $config;
 
-    /**
-     * @var \Robo\Collection\CollectionBuilder
-     */
-    protected $builder;
+    protected CollectionBuilder $builder;
 
-    /**
-     * @var \Sweetchuck\Robo\Hash\Test\Helper\Dummy\DummyTaskBuilder
-     */
-    protected $taskBuilder;
+    protected DummyTaskBuilder $taskBuilder;
 
     /**
      * @SuppressWarnings("CamelCaseMethodName")
@@ -59,7 +46,7 @@ class HashTaskTest extends Unit
         Robo::unsetContainer();
 
         $this->container = new LeagueContainer();
-        $application = new SymfonyApplication('Sweetchuck - Robo Hash', '1.0.0');
+        $application = new SymfonyApplication('Sweetchuck - Robo Hash', '2.0.0');
         $application->getHelperSet()->set(new DummyProcessHelper(), 'process');
         $this->config = (new Config());
         $input = null;

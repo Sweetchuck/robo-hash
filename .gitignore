@@ -1,10 +1,12 @@
 
-/bin/
+/tests/_log/
+/tests/_support/_generated/
+/tests/*.suite.yml
+/codeception.yml
+
 /vendor/
 
-/tests/_output/
-/tests/_support/_generated/
-
 /.git-hooks.local
+
 /robo.yml
-/RoboFileLocal*.php
+/RoboFileAcceptance.php

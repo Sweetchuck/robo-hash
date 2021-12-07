@@ -11,6 +11,7 @@ orbs:
     COMPOSER_NO_INTERACTION: '1'
     COMPOSER_MEMORY_LIMIT: '-1'
     COMPOSER_DISABLE_XDEBUG_WARN: '1'
+    COMPOSER_CACHE_DIR: '~/.cache/composer/'
 
 executors:
     php_min:
@@ -29,6 +30,14 @@ executors:
             -
                 name: 'main'
                 image: 'circleci/php:8.0'
+    php_plus2:
+        environment:
+            <<: *env_app
+            <<: *env_composer
+        docker:
+            -
+                name: 'main'
+                image: 'circleci/php:8.1'
 
 commands:
     install_php_extension_pcov:
@@ -59,7 +68,6 @@ commands:
                     name: 'Composer - cache save'
                     key: 'composer-{{ checksum "./composer.lock" }}-2'
                     paths:
-                        - '~/.composer/cache/'
                         - '~/.cache/composer/'
 
     lint:
@@ -68,7 +76,8 @@ commands:
             -
                 run:
                     name: 'Run linters'
-                    command: 'bin/robo  --ansi lint'
+                    command: |
+                        "$(composer config bin-dir)/robo" -vv lint
 
     test:
         description: 'Run tests'
@@ -76,19 +85,28 @@ commands:
             -
                 run:
                     name: 'Codeception - unit'
-                    command: 'bin/robo --ansi test unit'
-            -   codecov/upload:
+                    command: |
+                        "$(composer config bin-dir)/robo" test unit
+            -
+                codecov/upload:
                     flags: 'unit'
                     file: './tests/_output/machine/coverage/unit/coverage.xml'
             -
                 run:
                     name: 'Codeception - acceptance'
-                    command: 'bin/robo --ansi test acceptance'
-            -   codecov/upload:
-                    flags: 'unit'
+                    command: |
+                        "$(composer config bin-dir)/robo" test acceptance
+            -
+                codecov/upload:
+                    flags: 'acceptance'
                     file: './tests/_output/machine/coverage/acceptance/coverage.xml'
-            -   store_test_results:
-                    name: 'Store unit test results'
+            -
+                store_test_results:
+                    name: 'Store test results as test results for CircleCI UI'
+                    path: './tests/_output/machine/junit'
+            -
+                store_artifacts:
+                    name: 'Store test results as artifacts'
                     path: './tests/_output/machine/junit'
 
 jobs:
@@ -121,6 +139,14 @@ jobs:
             - 'install_php_extension_pcov'
             - 'composer_install'
             - 'test'
+    test_php_plus2:
+        executor: 'php_plus2'
+        working_directory: '~/repo'
+        steps:
+            - 'checkout'
+            - 'install_php_extension_pcov'
+            - 'composer_install'
+            - 'test'
 
 workflows:
     lint_and_test:
@@ -139,3 +165,9 @@ workflows:
                 test_php_plus1:
                     requires:
                         - 'build'
+# @link https://github.com/CircleCI-Public/cimg-php/issues/126
+# @link https://github.com/CircleCI-Public/cimg-php/pull/138
+#            -
+#                test_php_plus2:
+#                    requires:
+#                        - 'build'

@@ -1,12 +1,12 @@
 
-namespace: Sweetchuck\Robo\Hash\Test
+namespace: 'Sweetchuck\Robo\Hash\Tests'
 
 paths:
-    data: tests/_data
-    envs: tests/_envs
-    output: tests/_output
-    support: tests/_support
-    tests: tests
+    tests: 'tests'
+    data: 'tests/_data'
+    envs: 'tests/_envs'
+    log: 'tests/_log'
+    support: 'tests/_support'
 
 settings:
     colors: true

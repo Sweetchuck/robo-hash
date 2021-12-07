@@ -2,14 +2,14 @@
 
 declare(strict_types = 1);
 
-namespace Sweetchuck\Robo\Hash\Test\Helper\RoboFiles;
+namespace Sweetchuck\Robo\Hash\Tests\Helper\RoboFiles;
 
 use Robo\Collection\CollectionBuilder;
 use Robo\State\Data as RoboStateData;
 use Robo\Tasks;
 use Sweetchuck\Robo\Hash\HashTaskLoader;
 
-class HashRoboFile extends Tasks
+class RoboFileAcceptance extends Tasks
 {
 
     use HashTaskLoader;

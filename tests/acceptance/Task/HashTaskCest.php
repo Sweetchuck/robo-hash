@@ -5,8 +5,8 @@ declare(strict_types = 1);
 namespace Sweetchuck\Robo\Hash\Tests\Acceptance\Task;
 
 use Codeception\Example;
-use Sweetchuck\Robo\Hash\Test\AcceptanceTester;
-use Sweetchuck\Robo\Hash\Test\Helper\RoboFiles\HashRoboFile;
+use Sweetchuck\Robo\Hash\Tests\AcceptanceTester;
+use Sweetchuck\Robo\Hash\Tests\Helper\RoboFiles\RoboFileAcceptance;
 use Sweetchuck\Robo\Hash\Tests\Acceptance\CestBase;
 
 class HashTaskCest extends CestBase
@@ -50,7 +50,7 @@ class HashTaskCest extends CestBase
      */
     public function hash(AcceptanceTester $tester, Example $example)
     {
-        $tester->runRoboTask($example['id'], HashRoboFile::class, ...$example['cli']);
+        $tester->runRoboTask($example['id'], RoboFileAcceptance::class, ...$example['cli']);
         $exitCode = $tester->getRoboTaskExitCode($example['id']);
         $stdOutput = $tester->getRoboTaskStdOutput($example['id']);
         $stdError = $tester->getRoboTaskStdError($example['id']);

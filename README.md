@@ -1,10 +1,10 @@
 # Robo Hash
 
-[![CircleCI](https://circleci.com/gh/Sweetchuck/robo-hash/tree/1.x.svg?style=svg)](https://circleci.com/gh/Sweetchuck/robo-hash/?branch=1.x)
-[![codecov](https://codecov.io/gh/Sweetchuck/robo-hash/branch/1.x/graph/badge.svg?token=HSF16OGPyr)](https://app.codecov.io/gh/Sweetchuck/robo-hash/branch/1.x)
+[![CircleCI](https://circleci.com/gh/Sweetchuck/robo-hash/tree/2.x.svg?style=svg)](https://circleci.com/gh/Sweetchuck/robo-hash/?branch=2.x)
+[![codecov](https://codecov.io/gh/Sweetchuck/robo-hash/branch/2.x/graph/badge.svg?token=HSF16OGPyr)](https://app.codecov.io/gh/Sweetchuck/robo-hash/branch/2.x)
 
 
-Wrapper for [Hash](https://www.php.net/manual/en/function.hash.php)
+Wrapper for [PHP Hash]
 
 ```php
 <?php
@@ -93,3 +93,5 @@ class RoboFile extends Tasks
 }
 
 ```
+
+[PHP Hash]: https://www.php.net/manual/en/function.hash.php

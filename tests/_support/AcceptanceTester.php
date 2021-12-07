@@ -2,7 +2,7 @@
 
 declare(strict_types = 1);
 
-namespace Sweetchuck\Robo\Hash\Test;
+namespace Sweetchuck\Robo\Hash\Tests;
 
 /**
  * Inherited Methods
