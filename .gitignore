@@ -8,5 +8,7 @@
 
 /.git-hooks.local
 
+/phpcs.xml
+
 /robo.yml
 /RoboFileAcceptance.php
