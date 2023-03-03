@@ -21,10 +21,7 @@ class HashTask extends RoboBaseTask
         return $this->assetNamePrefix;
     }
 
-    /**
-     * @return $this
-     */
-    public function setAssetNamePrefix(string $value)
+    public function setAssetNamePrefix(string $value): static
     {
         $this->assetNamePrefix = $value;
 
@@ -38,10 +35,7 @@ class HashTask extends RoboBaseTask
         return $this->hashAlgorithm;
     }
 
-    /**
-     * @return $this
-     */
-    public function setHashAlgorithm(string $hashAlgorithm)
+    public function setHashAlgorithm(string $hashAlgorithm): static
     {
         $this->hashAlgorithm = $hashAlgorithm;
 
@@ -55,10 +49,7 @@ class HashTask extends RoboBaseTask
         return $this->hashFlags;
     }
 
-    /**
-     * @return $this
-     */
-    public function setHashFlags(int $hashFlags)
+    public function setHashFlags(int $hashFlags): static
     {
         $this->hashFlags = $hashFlags;
 
@@ -72,10 +63,7 @@ class HashTask extends RoboBaseTask
         return $this->hashKey;
     }
 
-    /**
-     * @return $this
-     */
-    public function setHashKey(?string $hashKey)
+    public function setHashKey(?string $hashKey): static
     {
         $this->hashKey = $hashKey;
 
@@ -89,10 +77,7 @@ class HashTask extends RoboBaseTask
         return $this->fileName;
     }
 
-    /**
-     * @return $this
-     */
-    public function setFileName(string $fileName)
+    public function setFileName(string $fileName): static
     {
         $this->fileName = $fileName;
 
@@ -114,10 +99,8 @@ class HashTask extends RoboBaseTask
 
     /**
      * @param null|resource $fileHandler
-     *
-     * @return $this
      */
-    public function setFileHandler($fileHandler)
+    public function setFileHandler($fileHandler): static
     {
         if ($fileHandler !== null
             && (!is_resource($fileHandler) || get_resource_type($fileHandler) !== 'stream')
@@ -147,20 +130,14 @@ class HashTask extends RoboBaseTask
         return $this->chunkSize;
     }
 
-    /**
-     * @return $this
-     */
-    public function setChunkSize(int $chunkSize)
+    public function setChunkSize(int $chunkSize): static
     {
         $this->chunkSize = $chunkSize;
 
         return $this;
     }
 
-    /**
-     * @return $this
-     */
-    public function setOptions(array $options)
+    public function setOptions(array $options): static
     {
         if (array_key_exists('fileName', $options)) {
             $this->setFileName($options['fileName']);
@@ -204,10 +181,7 @@ class HashTask extends RoboBaseTask
             ->runReturn();
     }
 
-    /**
-     * @return $this
-     */
-    protected function runHeader()
+    protected function runHeader(): static
     {
         $chunkSize = $this->getChunkSize();
         $text = $chunkSize === -1 ?
@@ -226,10 +200,7 @@ class HashTask extends RoboBaseTask
         return $this;
     }
 
-    /**
-     * @return $this
-     */
-    protected function runDoIt()
+    protected function runDoIt(): static
     {
         $this
             ->runDoItInitFileHandler()
@@ -239,7 +210,7 @@ class HashTask extends RoboBaseTask
         return $this;
     }
 
-    protected function runDoItInitFileHandler()
+    protected function runDoItInitFileHandler(): static
     {
         $fileName = $this->getFileName();
         $fileHandler = $this->getFileHandler();
@@ -261,7 +232,7 @@ class HashTask extends RoboBaseTask
         return $this;
     }
 
-    protected function runDoItHash()
+    protected function runDoItHash(): static
     {
         $initArgs = [
             $this->getHashAlgorithm(),
@@ -283,7 +254,7 @@ class HashTask extends RoboBaseTask
         return $this;
     }
 
-    protected function runDoItPost()
+    protected function runDoItPost(): static
     {
         if (!$this->isExternalFileHandler) {
             fclose($this->fileHandler);

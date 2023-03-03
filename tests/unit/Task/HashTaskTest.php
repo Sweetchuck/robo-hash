@@ -92,7 +92,7 @@ class HashTaskTest extends Unit
     /**
      * @dataProvider casesRun
      */
-    public function testRun(array $expected, array $options)
+    public function testRun(array $expected, array $options): void
     {
         $expected += [
             'exitCode' => 0,

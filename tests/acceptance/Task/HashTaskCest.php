@@ -48,7 +48,7 @@ class HashTaskCest extends CestBase
     /**
      * @dataProvider hashCases
      */
-    public function hash(AcceptanceTester $tester, Example $example)
+    public function hash(AcceptanceTester $tester, Example $example): void
     {
         $tester->runRoboTask($example['id'], RoboFileAcceptance::class, ...$example['cli']);
         $exitCode = $tester->getRoboTaskExitCode($example['id']);
