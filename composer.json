@@ -33,7 +33,7 @@
         "sort-packages": true
     },
     "require": {
-        "php": ">=8.1",
+        "php": ">=8.2",
         "ext-hash": "*",
         "consolidation/robo": "^4.0"
     },
