@@ -4,25 +4,27 @@ declare(strict_types = 1);
 
 namespace Sweetchuck\Robo\Hash\Tests\Unit\Task;
 
+use Codeception\Attribute\DataProvider;
 use Codeception\Test\Unit;
 use Consolidation\Config\ConfigInterface;
 use League\Container\Container as LeagueContainer;
+use PHPUnit\Framework\Attributes\CoversClass;
 use Psr\Container\ContainerInterface;
 use Robo\Collection\CollectionBuilder;
 use Robo\Config\Config;
 use Robo\Robo;
 use Sweetchuck\Codeception\Module\RoboTaskRunner\DummyOutput;
 use Sweetchuck\Codeception\Module\RoboTaskRunner\DummyProcessHelper;
+use Sweetchuck\Robo\Hash\HashTaskLoader;
+use Sweetchuck\Robo\Hash\Task\HashTask;
 use Sweetchuck\Robo\Hash\Tests\Helper\Dummy\DummyTaskBuilder;
 use Sweetchuck\Robo\Hash\Tests\UnitTester;
 use Symfony\Component\Console\Application as SymfonyApplication;
 use Symfony\Component\Console\Output\OutputInterface;
 use Symfony\Component\ErrorHandler\BufferingLogger;
 
-/**
- * @covers \Sweetchuck\Robo\Hash\Task\HashTask
- * @covers \Sweetchuck\Robo\Hash\HashTaskLoader
- */
+#[CoversClass(HashTask::class)]
+#[CoversClass(HashTaskLoader::class)]
 class HashTaskTest extends Unit
 {
 
@@ -65,7 +67,7 @@ class HashTaskTest extends Unit
         $this->taskBuilder->setBuilder($this->builder);
     }
 
-    public function casesRun(): array
+    public static function casesRun(): array
     {
         $fileContent = 'abcdef';
         $hash = [
@@ -89,9 +91,7 @@ class HashTaskTest extends Unit
         ];
     }
 
-    /**
-     * @dataProvider casesRun
-     */
+    #[DataProvider('casesRun')]
     public function testRun(array $expected, array $options): void
     {
         $expected += [

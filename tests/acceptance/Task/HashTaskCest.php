@@ -4,6 +4,7 @@ declare(strict_types = 1);
 
 namespace Sweetchuck\Robo\Hash\Tests\Acceptance\Task;
 
+use Codeception\Attribute\DataProvider;
 use Codeception\Example;
 use Sweetchuck\Robo\Hash\Tests\AcceptanceTester;
 use Sweetchuck\Robo\Hash\Tests\Helper\RoboFiles\RoboFileAcceptance;
@@ -11,7 +12,7 @@ use Sweetchuck\Robo\Hash\Tests\Acceptance\CestBase;
 
 class HashTaskCest extends CestBase
 {
-    protected function hashCases(): array
+    public static function hashCases(): array
     {
         $fileContent = 'abcdef';
         $fileName = 'data://text/plain;base64,' . base64_encode($fileContent);
@@ -45,9 +46,7 @@ class HashTaskCest extends CestBase
         ];
     }
 
-    /**
-     * @dataProvider hashCases
-     */
+    #[DataProvider('hashCases')]
     public function hash(AcceptanceTester $tester, Example $example): void
     {
         $tester->runRoboTask($example['id'], RoboFileAcceptance::class, ...$example['cli']);

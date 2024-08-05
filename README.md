@@ -1,7 +1,7 @@
 # Robo Hash
 
-[![CircleCI](https://circleci.com/gh/Sweetchuck/robo-hash/tree/3.x.svg?style=svg)](https://circleci.com/gh/Sweetchuck/robo-hash/?branch=3.x)
-[![codecov](https://codecov.io/gh/Sweetchuck/robo-hash/branch/3.x/graph/badge.svg?token=HSF16OGPyr)](https://app.codecov.io/gh/Sweetchuck/robo-hash/branch/3.x)
+[![CircleCI](https://circleci.com/gh/Sweetchuck/robo-hash/tree/4.x.svg?style=svg)](https://circleci.com/gh/Sweetchuck/robo-hash/?branch=4.x)
+[![codecov](https://codecov.io/gh/Sweetchuck/robo-hash/branch/4.x/graph/badge.svg?token=HSF16OGPyr)](https://app.codecov.io/gh/Sweetchuck/robo-hash/branch/4.x)
 
 
 Wrapper for [PHP Hash]
