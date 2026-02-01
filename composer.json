@@ -30,12 +30,6 @@
             "sweetchuck/git-hooks": true
         }
     },
-    "repositories": {
-        "nuvoleweb/robo-config": {
-            "type": "github",
-            "url": "https://github.com/Sweetchuck/robo-config.git"
-        }
-    },
     "require": {
         "php": ">=7.4",
         "ext-hash": "*",
@@ -45,7 +39,7 @@
         "ext-json": "*",
         "codeception/codeception": "^4.1",
         "codeception/module-asserts": "^1.1",
-        "nuvoleweb/robo-config": "3.x-dev",
+        "nuvoleweb/robo-config": "^2.0",
         "psr/container": "^1.0",
         "squizlabs/php_codesniffer": "^3.5",
         "sweetchuck/codeception-module-robo-task-runner": "2.x-dev",
