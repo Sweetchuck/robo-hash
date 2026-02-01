@@ -15,10 +15,10 @@ use Sweetchuck\Robo\Git\GitTaskLoader;
 use Sweetchuck\Robo\Phpcs\PhpcsTaskLoader;
 use Symfony\Component\Console\Output\ConsoleOutputInterface;
 use Symfony\Component\Console\Output\OutputInterface;
+use Symfony\Component\Filesystem\Path;
 use Symfony\Component\Finder\Finder;
 use Symfony\Component\Process\Process;
 use Symfony\Component\Yaml\Yaml;
-use Webmozart\PathUtil\Path;
 
 class RoboFile extends Tasks implements LoggerAwareInterface, ConfigAwareInterface
 {
@@ -82,7 +82,7 @@ class RoboFile extends Tasks implements LoggerAwareInterface, ConfigAwareInterfa
             }
 
             if ($container instanceof LeagueContainer) {
-                $container->share($name, $class);
+                $container->addShared($name, $class);
             }
         }
     }
@@ -200,11 +200,6 @@ class RoboFile extends Tasks implements LoggerAwareInterface, ConfigAwareInterfa
     protected function getPhpExecutable(): string
     {
         return getenv($this->getEnvVarName('php_executable')) ?: PHP_BINARY;
-    }
-
-    protected function getPhpdbgExecutable(): string
-    {
-        return getenv($this->getEnvVarName('phpdbg_executable')) ?: Path::join(PHP_BINDIR, 'phpdbg');
     }
 
     /**

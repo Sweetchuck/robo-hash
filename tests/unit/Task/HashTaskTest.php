@@ -6,7 +6,7 @@ namespace Sweetchuck\Robo\Hash\Tests\Unit\Task;
 
 use Codeception\Test\Unit;
 use League\Container\Container as LeagueContainer;
-use League\Container\ContainerInterface;
+use Psr\Container\ContainerInterface;
 use Robo\Collection\CollectionBuilder;
 use Robo\Config\Config;
 use Robo\Robo;
@@ -30,7 +30,7 @@ class HashTaskTest extends Unit
     protected $tester;
 
     /**
-     * @var \League\Container\ContainerInterface
+     * @var \Psr\Container\ContainerInterface
      */
     protected $container;
 
@@ -70,7 +70,7 @@ class HashTaskTest extends Unit
         $this->container->add('container', $this->container);
 
         Robo::configureContainer($this->container, $application, $this->config, $input, $output);
-        $this->container->share('logger', BufferingLogger::class);
+        $this->container->addShared('logger', BufferingLogger::class);
 
         $this->builder = CollectionBuilder::create($this->container, null);
         $this->taskBuilder = new DummyTaskBuilder();
